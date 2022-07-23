@@ -1,0 +1,20 @@
+{% extends 'base.html' %} 
+
+{% block title %}{{ article.title }}{% endblock title %} 
+
+{% block content %} 
+<h1>{{ article.title }}</h1>
+<h3>{{ article.subtitle }}</h3>
+<small>Created on: {{ article.created_on }} | By: {{ article.author }}</small>
+<p>{{ article.body }}</p>
+{% if user.is_staff %} <!--this is a simple way of enforcing the ability to edit/delete posts to only staff, user.is_authenticated will just ensure that a user is logged in-->
+<div>
+    <p>
+        <a href="{% url 'article_edit' article.id %}" class="btn btn-primary">Edit</a>
+    </p>
+    <p>
+        <a href="{% url 'article_delete' article.id %}" class="btn btn-danger">Delete</a>
+    </p>
+</div>
+{% endif %}
+{% endblock content %} 

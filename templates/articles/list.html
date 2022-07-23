@@ -1,0 +1,13 @@
+{% extends 'base.html' %} 
+
+{% block title %}Articles{% endblock title %} 
+
+{% block content %} 
+<h1>Articles</h1>
+<h6>Current date and time: {{ current_datetime }}</h6>
+<ul>
+    {% for article in article_list %} 
+    <li><a href="{% url 'articles_detail' article.id %}">{{ article.title }} - {{ article.created_on }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock content %} 

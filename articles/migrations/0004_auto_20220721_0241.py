@@ -4,11 +4,11 @@ from django.db import migrations
 
 def populate_article_status(apps, schemaeditor):
     status_types = {
-        "published": "",
-        "pending review": "",
-        "revision requested": "",
-        "denied": "",
-        "draft": "",
+        "published": "Content was published.",
+        "pending review": "Content is waiting on review.",
+        "revision requested": "Content was sent back for a revision.",
+        "denied": "Content was denied.",
+        "draft": "Content is currently in draft stage.",
     }
     Status = apps.get_model("articles", "Status")
     for name, desc in status_types.items():
@@ -22,5 +22,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.runPython(populate_article_status),
+        migrations.RunPython(populate_article_status),
     ]
